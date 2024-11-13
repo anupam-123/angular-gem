@@ -1,0 +1,85 @@
+<div class="conversation-section">
+  <div>
+    <h3>Welcome to angular gem</h3>
+  </div>
+  <ng-container class="d-flex flex-column w-100 overflow-auto">
+    @for (item of chatHistory; track chatHistory ) { @if (item.from === 'user')
+    {
+    <div class="d-flex gap-2 custom-style custom-style-user">
+      <mat-icon
+        aria-hidden="false"
+        aria-label="Example home icon"
+        fontIcon="person"
+      ></mat-icon>
+      <span [innerHTML]="item.message"></span>
+    </div>
+    } @else {
+    <div class="d-flex gap-2 custom-style custom-style-message">
+      <mat-icon
+        aria-hidden="false"
+        aria-label="Example home icon"
+        fontIcon="psychology"
+        class="custom-icon"
+      ></mat-icon>
+      <span [innerHTML]="item.message"></span>
+    </div>
+    } }
+  </ng-container>
+  <!-- <ng-container class="d-flex flex-column w-100 overflow-auto">
+    <div class="d-flex gap-2 custom-style custom-style-message">
+      <mat-icon
+        aria-hidden="false"
+        aria-label="Example home icon"
+        fontIcon="person"
+      ></mat-icon>
+      <span class="custom text-lg text-justify"
+        >Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit expedita
+        numquam alias distinctio ad repudiandae quis, soluta cum exercitationem
+        repellat id labore voluptatum enim possimus dicta et, atque eaque
+        maiores.</span
+      >
+    </div>
+
+    <div class="d-flex gap-2 custom-style custom-style-message">
+      <mat-icon
+        aria-hidden="false"
+        aria-label="Example home icon"
+        fontIcon="psychology"
+      ></mat-icon>
+      <span class="custom text-lg text-justify"
+        >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non
+        reiciendis, minus corrupti, voluptatibus deserunt voluptas reprehenderit
+        beatae et tenetur quaerat ipsam, nulla porro. Distinctio voluptatibus
+        laborum saepe unde a nisi aspernatur magni? Eligendi dolorem fuga sequi
+        commodi, corporis modi quod est id, nam vitae soluta autem ut a minima
+        porro quibusdam, possimus minus aspernatur atque nisi voluptates nobis
+        amet! Rerum quia, adipisci optio modi dolore, quod totam neque eaque
+        quae maiores natus asperiores vitae ad fuga molestias sed veniam laborum
+        quasi laudantium minima dicta vel velit nam reiciendis. Odio, rerum
+        dolor! A nam id ipsa sequi? Iure modi voluptate debitis, optio suscipit
+        laborum, quis ab temporibus repellendus amet nihil odit reiciendis autem
+        velit distinctio quaerat earum ut odio aliquid maxime quia dignissimos.
+        Cumque sequi, officia voluptates distinctio soluta, quo eveniet quasi at
+        est commodi a fugit officiis quam, natus doloremque porro ipsam sit
+        nobis quas asperiores consequatur id incidunt repudiandae unde? Ut quia
+        facere neque voluptatum accusamus possimus voluptatem accusantium ex
+        fuga iusto nesciunt at nulla consectetur tempora laboriosam eaque,
+        similique, corrupti maiores illum enim quaerat a. Repellat vitae
+        consectetur dicta fugiat. Corporis perferendis rerum veniam numquam
+        iusto enim delectus error. Facere, suscipit, tenetur sint ipsa, nisi
+        debitis voluptate culpa consequatur earum repudiandae maiores. Tempora
+        numquam iste voluptas quisquam ad debitis quos quia sunt optio aut
+        reprehenderit maxime quod perferendis, neque aliquam atque nisi
+        repudiandae fugiat. Atque debitis sint culpa amet voluptatibus dolorem
+        perspiciatis maiores vero quibusdam libero quaerat illo itaque fugit
+        corrupti nobis, ratione tenetur. Voluptate neque vero nostrum fugiat
+        quod natus et harum soluta, reprehenderit cupiditate pariatur odit
+        repellat! Soluta debitis reprehenderit ad commodi dolores veniam ut
+        sequi ratione mollitia aliquid, quos quibusdam repudiandae? Perferendis
+        asperiores reprehenderit quas atque magni, nesciunt perspiciatis vitae,
+        cupiditate aperiam labore minima ut inventore dignissimos culpa
+        consequatur! Saepe amet quibusdam est quas iste.</span
+      >
+    </div>
+  </ng-container> -->
+</div>

@@ -1,0 +1,22 @@
+/* Full-screen container with flex column layout */
+.full-screen-container {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    /* border: 1px solid black; Replace with desired color */
+    /* box-sizing: border-box;  */
+  }
+  
+  /* Allows header and content to take full width */
+  .header,
+  .content {
+    width: 100%;
+  }
+  
+  /* Fills remaining space for the content area */
+  .content {
+    flex-grow: 1;
+    overflow: auto; /* Optional: Allows scrolling if content overflows */
+  }
+  

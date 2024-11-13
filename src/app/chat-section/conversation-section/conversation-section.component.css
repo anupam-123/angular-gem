@@ -1,0 +1,19 @@
+.custom-style {
+  max-width: 53rem;
+}
+
+/* .custom-style-user {
+  padding: 2rem;
+} */
+
+.custom {
+  max-width: 51rem;
+}
+
+.custom-style-message {
+  min-width: 98rem;
+}
+
+.custom-icon {
+  min-width: 4%;
+}

@@ -1,5 +1,34 @@
-.border.border-primary.d-flex.w-100.h-100 > div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+.container {
+  display: flex;
+  flex-direction: column;
+  /* width: 100vw; */
+  height: 93vh;
+  /* border: 1px solid black; Replace with desired color */
+  /* box-sizing: border-box; */
+}
+
+/* .flex-fi {
+  border: 1px solid var(--bs-primary);
+
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+} */
+
+.center-column {
+  border: 1px solid var(--bs-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.conversation-section {
+  display: flex;
+  flex-grow: 1;
+  padding: 1rem; /* Adjust padding as needed */
+}
+
+.button-component {
+  padding: 3rem; /* Adjust padding as needed */
+}

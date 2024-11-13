@@ -1,0 +1,15 @@
+<form [formGroup]="myForm" (ngSubmit)="submitMessage(myForm)">
+  <div class="input-group">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Enter Prompt"
+      aria-label="Recipient's username"
+      aria-describedby="basic-addon2"
+      formControlName="prompt"
+    />
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary" type="submit">Submit</button>
+    </div>
+  </div>
+</form>
