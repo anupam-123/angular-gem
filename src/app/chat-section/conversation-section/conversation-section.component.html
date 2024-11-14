@@ -1,31 +1,38 @@
 <div class="conversation-section">
-  <div>
-    <h3>Welcome to angular gem</h3>
-  </div>
+  <ng-container
+    class="d-flex flex-column w-100 overflow-auto border border-black"
+  >
+    <div class="conversation-section">
+      <!-- <div>
+        <h3>Welcome to angular gem</h3>
+      </div> -->
+      <ng-container
+        class="d-flex flex-column w-100 overflow-auto border border-black"
+      >
+        <div
+          *ngFor="let item of chatHistory"
+          class="d-flex gap-2"
+          [ngClass]="
+            item.from === 'user'
+              ? 'custom-style custom-style-user'
+              : 'custom-style custom-style-message'
+          "
+        >
+          <mat-icon
+            aria-hidden="false"
+            aria-label="Example home icon"
+            [fontIcon]="item.from === 'user' ? 'person' : 'psychology'"
+          ></mat-icon>
+          <span
+            [innerHTML]="item.message"
+            class="text-justify custom-style"
+          ></span>
+        </div>
+      </ng-container>
+    </div>
+
+    <!-- </ng-container>
   <ng-container class="d-flex flex-column w-100 overflow-auto">
-    @for (item of chatHistory; track chatHistory ) { @if (item.from === 'user')
-    {
-    <div class="d-flex gap-2 custom-style custom-style-user">
-      <mat-icon
-        aria-hidden="false"
-        aria-label="Example home icon"
-        fontIcon="person"
-      ></mat-icon>
-      <span [innerHTML]="item.message"></span>
-    </div>
-    } @else {
-    <div class="d-flex gap-2 custom-style custom-style-message">
-      <mat-icon
-        aria-hidden="false"
-        aria-label="Example home icon"
-        fontIcon="psychology"
-        class="custom-icon"
-      ></mat-icon>
-      <span [innerHTML]="item.message"></span>
-    </div>
-    } }
-  </ng-container>
-  <!-- <ng-container class="d-flex flex-column w-100 overflow-auto">
     <div class="d-flex gap-2 custom-style custom-style-message">
       <mat-icon
         aria-hidden="false"
@@ -82,4 +89,5 @@
       >
     </div>
   </ng-container> -->
+  </ng-container>
 </div>

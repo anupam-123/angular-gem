@@ -10,16 +10,20 @@ import { marked } from 'marked';
 export class GeminiService {
   private generativeAI: GoogleGenerativeAI | null = null;
 
+  // Define your system instruction here
+  private systemInstruction =
+    'You are a helpful assistant that answers questions concisely.';
+
   constructor() {
     this.generativeAI = new GoogleGenerativeAI(environment.apiKey);
   }
-
   private messageHistory: BehaviorSubject<any> = new BehaviorSubject(null);
 
   async generateText(prompt: string) {
-    if (prompt) {
-      new Error('Prompt is empty');
+    if (!prompt) {
+      throw new Error('Prompt is empty');
     }
+
     const model = this.generativeAI!.getGenerativeModel({
       model: 'gemini-1.5-flash',
     });
@@ -29,16 +33,16 @@ export class GeminiService {
       message: prompt,
     });
 
-    const result = await model.generateContent(prompt);
-    // const textResponse = result.response.text();
-    const html = marked.parse(result.response.text());
+    const result = await model.generateContent(`${prompt}`);
+
+    const transpiledResponse = marked.parse(result.response.text());
 
     this.messageHistory.next({
       from: 'Bot',
-      message: html,
+      message: transpiledResponse,
     });
-    // console.log('From the result', result.response.text);
   }
+
   public getMessageHistory(): Observable<any> {
     return this.messageHistory.asObservable();
   }

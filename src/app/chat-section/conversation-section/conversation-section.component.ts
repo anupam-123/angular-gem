@@ -1,25 +1,30 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { MessageService } from '../message.service';
 import { GeminiService } from '../../gemini.service';
-import { TitleStrategy } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-conversation-section',
   standalone: true,
-  imports: [MatIconModule],
+  imports: [MatIconModule, CommonModule],
   templateUrl: './conversation-section.component.html',
-  styleUrl: './conversation-section.component.css',
+  styleUrls: ['./conversation-section.component.css'],
 })
 export class ConversationSectionComponent implements OnInit {
-  messages: string[] = [];
-
-  constructor(private getMessageHistory: GeminiService) {}
-
   chatHistory: any[] = [];
+
+  constructor(
+    private getMessageHistory: GeminiService,
+    private cdr: ChangeDetectorRef
+  ) {}
+
   ngOnInit(): void {
     this.getMessageHistory.getMessageHistory().subscribe((data) => {
-      if (data) this.chatHistory.push(data);
+      if (data) {
+        // Push each message to chatHistory array
+        this.chatHistory = [...this.chatHistory, data];
+        this.cdr.detectChanges(); // Trigger change detection if necessary
+      }
     });
   }
 }

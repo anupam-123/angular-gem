@@ -1,10 +1,7 @@
 .custom-style {
   max-width: 53rem;
+  min-height: 3rem;
 }
-
-/* .custom-style-user {
-  padding: 2rem;
-} */
 
 .custom {
   max-width: 51rem;

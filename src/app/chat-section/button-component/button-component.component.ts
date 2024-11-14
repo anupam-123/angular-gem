@@ -9,11 +9,13 @@ import {
 } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { GeminiService } from '../../gemini.service';
+import { MatIconModule } from '@angular/material/icon';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-button-component',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule, MatIconModule, CommonModule],
   templateUrl: './button-component.component.html',
   styleUrls: ['./button-component.component.css'],
 })
@@ -32,6 +34,11 @@ export class ButtonComponentComponent implements OnInit {
   }
 
   async submitMessage(message: FormGroup) {
-    await this.geminiService.generateText(message.value.prompt);
+    try {
+      await this.geminiService.generateText(message.value.prompt);
+      this.myForm.reset();
+    } catch (e) {
+      console.log(e);
+    }
   }
 }

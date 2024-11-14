@@ -5,6 +5,8 @@
   height: 93vh;
   /* border: 1px solid black; Replace with desired color */
   /* box-sizing: border-box; */
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 /* .flex-fi {
@@ -26,9 +28,13 @@
 .conversation-section {
   display: flex;
   flex-grow: 1;
-  padding: 1rem; /* Adjust padding as needed */
+  padding: 1rem;
 }
 
 .button-component {
-  padding: 3rem; /* Adjust padding as needed */
+  padding: 3rem;
+}
+
+textarea {
+  background-clip: content-box;
 }
