@@ -19,13 +19,11 @@ export class FileService {
   constructor(private http: HttpClient) {}
 
   uploadFile(formData: FormData): Observable<MessageResponse> {
-    const headers = new HttpHeaders();
+    // const headers = new HttpHeaders();
     // Remove Content-Type header to let browser set it with boundary for multipart/form-data
     console.log('Headers:', formData);
     return this.http
-      .post<MessageResponse>(`${this.apiUrl}/files/`, formData, {
-        headers,
-      })
+      .post<MessageResponse>(`${this.apiUrl}/files/`, formData)
       .pipe(
         tap((response) => {
           const currentHistory = this.messageHistory.getValue();
