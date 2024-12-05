@@ -2,18 +2,36 @@
   [formGroup]="myForm"
   (ngSubmit)="submitMessage(myForm)"
   class="d-flex flex-row align-items-center custom-form"
+  (keydown.enter)="$event.preventDefault()"
 >
   <div class="input-group d-flex flex-row align-items-center">
-    <input
-      type="text"
-      class="form-control rounded-pill"
+    <textarea
+      class="form-control rounded-pill m-3 border border-dark"
       placeholder="Enter Prompt"
       aria-label="Recipient's username"
       aria-describedby="basic-addon2"
       formControlName="prompt"
-    />
-    <div class="input-group-append">
-      <button class="btn btn-outline-secondary rounded-pill" type="submit">
+      rows="1"
+    ></textarea>
+    <div class="input-group-append d-flex">
+      <label
+        class="btn btn-outline-secondary rounded-pill me-2 mb-0 border border-dark"
+      >
+        <fa-icon [icon]="faPaperclip"></fa-icon>
+        <input
+          type="file"
+          class="border border-dark"
+          style="display: none"
+          (change)="onFileSelected($event)"
+          accept=".pdf"
+          #fileInput
+        />
+      </label>
+      <button
+        class="btn btn-outline-secondary rounded-pill btn btn-outline-dark border border-dark"
+        type="submit"
+        [disabled]="myForm.invalid || (isLoading$ | async)"
+      >
         Submit
       </button>
     </div>

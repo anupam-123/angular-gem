@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { GeminiService } from '../../gemini.service';
+import { FileService } from '../../gemini.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -14,16 +14,15 @@ export class ConversationSectionComponent implements OnInit {
   chatHistory: any[] = [];
 
   constructor(
-    private getMessageHistory: GeminiService,
+    private getMessageHistory: FileService,
     private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
     this.getMessageHistory.getMessageHistory().subscribe((data) => {
       if (data) {
-        // Push each message to chatHistory array
         this.chatHistory = [...this.chatHistory, data];
-        this.cdr.detectChanges(); // Trigger change detection if necessary
+        this.cdr.detectChanges();
       }
     });
   }
