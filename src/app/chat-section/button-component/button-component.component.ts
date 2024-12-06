@@ -83,7 +83,9 @@ export class ButtonComponentComponent implements OnInit {
         console.log(`${key}:`, value);
       });
 
-      const response = await this.fileService.uploadFile(formData).toPromise();
+      const response: any = await this.fileService
+        .uploadFile(formData)
+        .toPromise();
       console.log('Response:', response);
     } catch (error: any) {
       console.error('Error submitting form:', error.message);
