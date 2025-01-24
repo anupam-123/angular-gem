@@ -14,3 +14,11 @@
 .custom-icon {
   min-width: 4%;
 }
+
+.text-lg {
+  font-size: 1.25rem; /* Adjust as needed */
+}
+
+.text-justify {
+  text-align: justify;
+}

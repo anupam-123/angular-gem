@@ -12,6 +12,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPaperclip } from '@fortawesome/free-solid-svg-icons';
 import { FileService } from '../../gemini.service';
 import { LoadingService } from '../loading.service';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-button-component',
@@ -60,17 +61,14 @@ export class ButtonComponentComponent implements OnInit {
       this.loadingService.loadingOn();
       const formData = new FormData();
 
-      // Fix: Access prompt value correctly
       formData.append('prompt', message.value.prompt);
 
       if (this.selectedFile) {
-        // Add file size validation (e.g., 10MB limit)
-        const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB in bytes
+        const MAX_FILE_SIZE = 10 * 1024 * 1024;
         if (this.selectedFile.size > MAX_FILE_SIZE) {
           throw new Error('File size exceeds 10MB limit');
         }
 
-        // Verify file type
         if (!this.selectedFile.type.includes('pdf')) {
           throw new Error('Only PDF files are allowed');
         }
@@ -78,15 +76,17 @@ export class ButtonComponentComponent implements OnInit {
         formData.append('fileb', this.selectedFile, this.selectedFile.name);
       }
 
-      // Log FormData contents for debugging
       formData.forEach((value, key) => {
-        console.log(`${key}:`, value);
+        console.log(`fff${key}:`, value);
       });
 
-      const response: any = await this.fileService
+      const fileResponse: any = await this.fileService
         .uploadFile(formData)
-        .toPromise();
-      console.log('Response:', response);
+        .subscribe((Response) => {
+          console.log('Response:', Response);
+        });
+
+      console.log('Response:', fileResponse);
     } catch (error: any) {
       console.error('Error submitting form:', error.message);
       // Handle specific error cases
