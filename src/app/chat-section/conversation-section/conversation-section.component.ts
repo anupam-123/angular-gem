@@ -4,11 +4,10 @@ import { FileService } from '../../gemini.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-conversation-section',
-  standalone: true,
-  imports: [MatIconModule, CommonModule],
-  templateUrl: './conversation-section.component.html',
-  styleUrls: ['./conversation-section.component.css'],
+    selector: 'app-conversation-section',
+    imports: [MatIconModule, CommonModule],
+    templateUrl: './conversation-section.component.html',
+    styleUrls: ['./conversation-section.component.css']
 })
 export class ConversationSectionComponent implements OnInit {
   chatHistory: { from: string; message: string }[] = [];

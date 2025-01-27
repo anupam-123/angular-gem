@@ -15,17 +15,16 @@ import { LoadingService } from '../loading.service';
 import { lastValueFrom } from 'rxjs';
 
 @Component({
-  selector: 'app-button-component',
-  standalone: true,
-  imports: [
-    FormsModule,
-    ReactiveFormsModule,
-    MatIconModule,
-    CommonModule,
-    FontAwesomeModule,
-  ],
-  templateUrl: './button-component.component.html',
-  styleUrls: ['./button-component.component.css'],
+    selector: 'app-button-component',
+    imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        MatIconModule,
+        CommonModule,
+        FontAwesomeModule,
+    ],
+    templateUrl: './button-component.component.html',
+    styleUrls: ['./button-component.component.css']
 })
 export class ButtonComponentComponent implements OnInit {
   myForm!: FormGroup;

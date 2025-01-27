@@ -4,11 +4,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-auth',
-  standalone: true,
-  imports: [MatInputModule, MatFormFieldModule],
-  templateUrl: './auth.component.html',
-  styleUrl: './auth.component.css',
+    selector: 'app-auth',
+    imports: [MatInputModule, MatFormFieldModule],
+    templateUrl: './auth.component.html',
+    styleUrl: './auth.component.css'
 })
 export class AuthComponent {
   constructor(private route: Router) {}

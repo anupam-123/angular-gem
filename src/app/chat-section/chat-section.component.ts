@@ -4,15 +4,14 @@ import { ConversationSectionComponent } from './conversation-section/conversatio
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-chat-section',
-  standalone: true,
-  imports: [
-    ButtonComponentComponent,
-    ConversationSectionComponent,
-    MatIconModule,
-  ],
-  templateUrl: './chat-section.component.html',
-  styleUrl: './chat-section.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-chat-section',
+    imports: [
+        ButtonComponentComponent,
+        ConversationSectionComponent,
+        MatIconModule,
+    ],
+    templateUrl: './chat-section.component.html',
+    styleUrl: './chat-section.component.css',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChatSectionComponent {}
