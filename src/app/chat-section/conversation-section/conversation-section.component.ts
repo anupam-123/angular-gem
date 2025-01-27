@@ -4,10 +4,11 @@ import { FileService } from '../../gemini.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
-    selector: 'app-conversation-section',
-    imports: [MatIconModule, CommonModule],
-    templateUrl: './conversation-section.component.html',
-    styleUrls: ['./conversation-section.component.css']
+  selector: 'app-conversation-section',
+  standalone: true,
+  imports: [MatIconModule, CommonModule],
+  templateUrl: './conversation-section.component.html',
+  styleUrls: ['./conversation-section.component.css'],
 })
 export class ConversationSectionComponent implements OnInit {
   chatHistory: { from: string; message: string }[] = [];
@@ -26,7 +27,7 @@ export class ConversationSectionComponent implements OnInit {
         this.chatHistory = [];
         // Map the data to the desired format
         data.forEach((messageResponse) => {
-          console.log(messageResponse);
+          console.log('messageResponsemessageResponse', messageResponse);
           console.log(
             'messageResponse',
             messageResponse.prompt,

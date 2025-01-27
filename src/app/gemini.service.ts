@@ -1,83 +1,53 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap, catchError } from 'rxjs';
 import { environment } from '../environments/environment';
+import { LocalStorageAngService } from './local-storage.service'; // Corrected import
+import { LocalStorageService } from 'ngx-webstorage';
 
-// gemini.service.ts
-
-// export interface Message {
-//   role: string;
-//   content: string;
-//   images: any;
-//   tool_calls: any;
-// }
-
-// export interface ResponseMetadata {
-//   model: string;
-//   created_at: string;
-//   done: boolean;
-//   done_reason: string;
-//   total_duration: number;
-//   load_duration: number;
-//   prompt_eval_count: number;
-//   prompt_eval_duration: number;
-//   eval_count: number;
-//   eval_duration: number;
-//   message: Message;
-// }
-
-// export interface UsageMetadata {
-//   input_tokens: number;
-//   output_tokens: number;
-//   total_tokens: number;
-// }
-
-// export interface ResponseContent {
-//   content: string;
-//   additional_kwargs: Record<string, any>;
-//   response_metadata: ResponseMetadata;
-//   type: string;
-//   name: string | null;
-//   id: string;
-//   example: boolean;
-//   tool_calls: any[];
-//   invalid_tool_calls: any[];
-//   usage_metadata: UsageMetadata;
-// }
-
-// export interface MessageResponse {
-//   response_content: any;
-//   response: ResponseContent;
-//   error?: string;
-// }
 @Injectable({
   providedIn: 'root',
 })
 export class FileService {
-  private messageHistory = new BehaviorSubject<any>([]);
+  private messageHistory = new BehaviorSubject<any[]>([]);
   private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
+  userDataStorage = inject(LocalStorageService); // Corrected type
 
   uploadFile(formData: FormData): Observable<any> {
     console.log('formDataformData' + formData);
     return this.http.post<any>(`${this.apiUrl}/files/`, formData).pipe(
       tap((response) => {
-        // const currentHistory = this.messageHistory.getValue();
-        // console.log('Current History:', currentHistory.length);
-        // this.messageHistory.next([...currentHistory, response]);
-
-        // Access the content from the response
-        // console.log('Response Content:', response.response.content);
-
         const currentHistory: any = {
-          current: this.messageHistory.getValue(),
           prompt: (formData.get('prompt') as string) || '',
+          aiResponse: response.response.content,
         };
-        console.log('Current History:', currentHistory['current'].length);
-        this.messageHistory.next([currentHistory, response]);
 
-        console.log('Response Content:', response.response);
+        // Retrieve existing history from localStorage
+
+        const storedHistory = JSON.parse(
+          ((this.userDataStorage as LocalStorageService).retrieve(
+            'currentHistory'
+          ) as string) || ('[]' as string)
+        ) as any[];
+
+        // Ensure storedHistory is an array
+        if (!Array.isArray(storedHistory)) {
+          throw new Error('Stored history is not an array');
+        }
+
+        // Update localStorage with new history
+        storedHistory.push(currentHistory);
+        (this.userDataStorage as LocalStorageService).store(
+          'currentHistory',
+          JSON.stringify(storedHistory)
+        );
+
+        // Update BehaviorSubject with new history
+        this.messageHistory.next(storedHistory);
+
+        console.log('Response Content:', response.response.content);
       }),
       catchError((error) => {
         throw new Error(`Upload failed: ${error.message}`);
@@ -91,5 +61,6 @@ export class FileService {
 
   clearHistory(): void {
     this.messageHistory.next([]);
+    (this.userDataStorage as LocalStorageService).clear('currentHistory');
   }
 }
