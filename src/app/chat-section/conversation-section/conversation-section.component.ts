@@ -32,7 +32,7 @@ export class ConversationSectionComponent implements OnInit {
             'messageResponse',
             messageResponse.prompt,
             'AiResponse',
-            messageResponse
+            messageResponse.response.response.response.content.aiResponse
           );
 
           // Add user's prompt to chat history

@@ -12,19 +12,19 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPaperclip } from '@fortawesome/free-solid-svg-icons';
 import { FileService } from '../../gemini.service';
 import { LoadingService } from '../loading.service';
-import { lastValueFrom } from 'rxjs';
+// import { lastValueFrom } from 'rxjs';
 
 @Component({
-    selector: 'app-button-component',
-    imports: [
-        FormsModule,
-        ReactiveFormsModule,
-        MatIconModule,
-        CommonModule,
-        FontAwesomeModule,
-    ],
-    templateUrl: './button-component.component.html',
-    styleUrls: ['./button-component.component.css']
+  selector: 'app-button-component',
+  // imports: [
+  //     FormsModule,
+  //     ReactiveFormsModule,
+  //     MatIconModule,
+  //     CommonModule,
+  //     FontAwesomeModule,
+  // ],
+  templateUrl: './button-component.component.html',
+  styleUrls: ['./button-component.component.css'],
 })
 export class ButtonComponentComponent implements OnInit {
   myForm!: FormGroup;
@@ -79,7 +79,7 @@ export class ButtonComponentComponent implements OnInit {
         console.log(`fff${key}:`, value);
       });
 
-      const fileResponse: any = await this.fileService
+      const fileResponse: any = this.fileService
         .uploadFile(formData)
         .subscribe((Response) => {
           console.log('Response:', Response);

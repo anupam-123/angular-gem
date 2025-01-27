@@ -21,7 +21,7 @@ export class FileService {
       tap((response) => {
         const currentHistory: any = {
           prompt: (formData.get('prompt') as string) || '',
-          aiResponse: response.response.content,
+          aiResponse: response.response.response.content,
         };
 
         // Retrieve existing history from localStorage
