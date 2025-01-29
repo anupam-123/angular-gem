@@ -27,14 +27,6 @@ export class ConversationSectionComponent implements OnInit {
         this.chatHistory = [];
         // Map the data to the desired format
         data.forEach((messageResponse) => {
-          console.log('messageResponsemessageResponse', messageResponse);
-          console.log(
-            'messageResponse',
-            messageResponse.prompt,
-            'AiResponse',
-            messageResponse.response.response.response.content.aiResponse
-          );
-
           // Add user's prompt to chat history
           if (messageResponse.prompt) {
             this.chatHistory.push({
@@ -44,14 +36,13 @@ export class ConversationSectionComponent implements OnInit {
           }
 
           // Add AI's response to chat history
-          if (messageResponse && messageResponse.current) {
+          if (messageResponse && messageResponse.aiResponse) {
             this.chatHistory.push({
               from: 'ai',
-              message: messageResponse,
+              message: messageResponse.aiResponse,
             });
           }
         });
-        console.log('chatHistory', this.chatHistory);
 
         // Trigger change detection to update the view
         this.cdr.detectChanges();

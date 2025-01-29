@@ -2,27 +2,20 @@ import { Component, inject, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
   Validators,
+  ReactiveFormsModule,
 } from '@angular/forms';
-import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPaperclip } from '@fortawesome/free-solid-svg-icons';
 import { FileService } from '../../gemini.service';
 import { LoadingService } from '../loading.service';
-// import { lastValueFrom } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-button-component',
-  // imports: [
-  //     FormsModule,
-  //     ReactiveFormsModule,
-  //     MatIconModule,
-  //     CommonModule,
-  //     FontAwesomeModule,
-  // ],
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, FontAwesomeModule, AsyncPipe],
   templateUrl: './button-component.component.html',
   styleUrls: ['./button-component.component.css'],
 })
